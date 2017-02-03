@@ -63,6 +63,7 @@ class User extends Object {
 		} else {
 			$this->user_image= basename($file['name']);
 			$this->temp_path= $file['tmp_name'];
+			return true;
 		}		
 	}
 
@@ -107,5 +108,4 @@ class User extends Object {
 	}
 
 }//End class
-$user= new User();
 ?>

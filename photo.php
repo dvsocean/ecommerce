@@ -6,7 +6,7 @@ class Photo extends Object{
 
 	protected static $db_table= "photos";
 	protected static $where_clause= "photo_id";
-	protected static $db_table_fields= array('photo_id', 'title', 'description', 'caption', 'filename', 'type', 
+	protected static $db_table_fields= array('title', 'description', 'caption', 'filename', 'type', 
 		'size');
 	public $photo_id;
 	public $title;
@@ -15,7 +15,6 @@ class Photo extends Object{
 	public $filename;
 	public $type;
 	public $size;
-
 	public $temp_path;
 	public $image_directory= "gbo_images";
 
@@ -36,6 +35,7 @@ class Photo extends Object{
 			$this->temp_path= $file['tmp_name'];
 			$this->type= $file['type'];
 			$this->size= $file['size'];
+			return true;
 		}		
 	}
 
@@ -48,10 +48,37 @@ class Photo extends Object{
 
 
 
+	public function move_photo(){
+		$target_path= SITE_ROOT . DS . $this->image_directory . DS . $this->filename;
+		if (move_uploaded_file($this->temp_path, $target_path)) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
+
+	public function insert_photo_db(){
+		global $database;
+		$this->move_photo();
+		$sql="INSERT INTO photos (" . implode(", ", self::$db_table_fields).")";
+		$sql.= " VALUES('$this->title', '$this->description', '$this->caption', '$this->filename', '$this->type', 
+		'$this->size')";
+
+		if ($database->query($sql)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+
 
 	public function save(){
 		if ($this->photo_id) {
-			$this->update_user();
+			$this->update_by_id();
 		} else {
 			if (!empty($this->errors)) {
 				return false;

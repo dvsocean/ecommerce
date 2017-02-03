@@ -11,9 +11,7 @@ require_once "object.php";
 require_once "comments_class.php";
 require_once "user.php";
 require_once "photo.php";
-require_once "records.php";
 require_once "session.php";
-require_once "helper.php";
 
 
 ?>

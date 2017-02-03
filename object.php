@@ -96,12 +96,12 @@ class Object{
 
 
 
-	public function create_account(){
+	public function create(){
 		global $database;
 		$properties= $this->clean_properties();
 
 		$sql="INSERT INTO " . static::$db_table . "(".implode(", ", array_keys($properties)).")";
-		$sql.="VALUES('" .implode("', '", array_values($properties)). "')";
+		$sql.=" VALUES('" .implode("', '", array_values($properties)). "')";
 
 		if ($database->query($sql)) {
 			$this->user_id= $database->auto_id();
