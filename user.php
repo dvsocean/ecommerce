@@ -21,7 +21,6 @@ class User extends Object {
   	public $shipping_state;
   	public $shipping_zipcode;
   	public $admin;
-  	public $extra_profile_pics= "extra_profile_pics";
   	public $upload_directory= "user_images";
   	public $image_placeholder= "../user_profile_uploads/PLHOLD.jpg";
   	
@@ -90,6 +89,24 @@ class User extends Object {
 			return false;
 		}
 	}
+
+
+
+	public function update_profile_image($image, $user_id){
+		global $database;
+	
+		$sql="UPDATE gallery_users SET user_image='{$image}' WHERE user_id='{$user_id}'";
+
+		// $sql="UPDATE " . self::$db_table . " SET user_image= '" . $image . "' ";
+		// $sql.=" WHERE user_id= '" . $this->user_id . "'";
+
+		if ($database->query($sql)) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+
 
 
 

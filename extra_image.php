@@ -3,7 +3,7 @@ class Extras extends Object {
 public $title;
 public $filename;
 public $type;
-public $extra_pics_folder= "extra_profile_pics";
+public $extra_pics_folder= "user_images";
 protected static $db_table= "profile_pics";
 protected static $db_table_fields= array('title', 'type', 'filename');
 public $user_errors= array();
