@@ -21,6 +21,7 @@ class User extends Object {
   	public $shipping_state;
   	public $shipping_zipcode;
   	public $admin;
+  	public $extra_profile_pics= "extra_profile_pics";
   	public $upload_directory= "user_images";
   	public $image_placeholder= "../user_profile_uploads/PLHOLD.jpg";
   	
@@ -50,6 +51,7 @@ class User extends Object {
 		$user_row= mysqli_fetch_array($result);
 		return $user_row;
 	}
+
 
 
 	public function set_user_image($file){
