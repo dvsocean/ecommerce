@@ -21,8 +21,8 @@ class User extends Object {
   	public $shipping_state;
   	public $shipping_zipcode;
   	public $admin;
-  	public $upload_directory= "user_images";
-  	public $image_placeholder= "../user_profile_uploads/PLHOLD.jpg";
+  	public $upload_directory= "user_uploads";
+  	public $image_placeholder= "../PLACEHOLDER/PLACEHOLDER.JPG";
   	
 
   	public function delete_user_ajax($data){
@@ -40,7 +40,7 @@ class User extends Object {
 
 
   	public function user_image(){
-  		return empty($this->user_image) ? $this->image_placeholder : $this->upload_directory. DS .$this->user_image;
+  		return empty($this->user_image) ? $this->image_placeholder : $this->upload_directory . DS . $this->user_image;
   	}
 
 	
@@ -80,7 +80,7 @@ class User extends Object {
 			$target_path= SITE_ROOT . DS . $this->upload_directory . DS . $this->user_image;
 	
 		if (move_uploaded_file($this->temp_path, $target_path)) {
-			if ($this->create_account()) {
+			if ($this->create()) {
 				unset($this->temp_path);
 				return true;
 			}
@@ -125,6 +125,10 @@ class User extends Object {
 		}
 		return $first_item;
 	}
+
+
+
+
 
 }//End class
 ?>
