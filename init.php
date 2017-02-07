@@ -1,5 +1,6 @@
 <?php 
-// ob_start();
+ob_start();
+
 
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 define('SITE_ROOT', DS . 'Applications' . DS . 'XAMPP' . DS . 'htdocs');
@@ -13,6 +14,6 @@ require_once "user.php";
 require_once "photo.php";
 require_once "session.php";
 require_once "extra_image.php";
-
-
+require_once "nav_bar.php";
 ?>
+

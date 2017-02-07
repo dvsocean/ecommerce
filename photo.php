@@ -23,33 +23,39 @@ class Photo extends Object{
 	public function upload_new_profile_image($user_id, $file){
 		global $database;
 		if (empty($file) || !$file || !is_array($file)) {
-			Session::set_message("<p class='bg-danger text-center'>No image selected or it is not a file</p>");
+			Session::set_message("<h3 class='bg-danger text-center curves'>No image selected or it is not a file</h3>");
 			// $this->user_errors[]= "There was an error with the USER IMAGE file upload DANIKA";
 			return false;
 		}
 
 		if ($file['size'] > 1000000) {
-			Session::set_message("<p class='bg-danger text-center'>File too big, LIMIT 1MB</p>");
+			Session::set_message("<h3 class='bg-danger text-center curves'>File too big, LIMIT 1MB</h3>");
 			return false;
 		} else {
 				if ($file['error'] == 0) {
 				$target_path= SITE_ROOT . DS . $this->image_directory . $this->filename;
 				$temp_name= $file['tmp_name'];
 
-				if (move_uploaded_file($temp_name, $target_path)) {
-					$sql="INSERT INTO " . self::$db_table . "(" .  implode(", ", self::$db_table_fields). ")";
-					$sql.=" VALUES('$user_id', '$this->title', '$this->filename', '$this->type', '$this->size', 
-					'$this->image_directory$this->filename');";
-
-					if ($database->query($sql)) {
-						return true;
-					} else {
+					if (file_exists($target_path)) {
+						Session::set_message("<h3 class='bg-danger text-center curves'>This filename already exists</h3>");
 						return false;
+					} else{
+						if (move_uploaded_file($temp_name, $target_path)) {
+							$sql="INSERT INTO " . self::$db_table . "(" .  implode(", ", self::$db_table_fields). ")";
+							$sql.=" VALUES('$user_id', '$this->title', '$this->filename', '$this->type',";
+							$sql.="'$this->size', '$this->image_directory$this->filename');";
+
+							if ($database->query($sql)) {
+								return true;
+							} else {
+								return false;
+							}
+						} else {
+							Session::set_message("<h3 class='bg-danger text-center curves'>Unable to move uploaded file</h3>");
+						}
 					}
-				} else {
-					$this->user_errors[]= "Unable to move uploaded file";
-				}
-			}
+					
+			    }
 		}
 	}
 

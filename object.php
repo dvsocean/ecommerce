@@ -8,7 +8,7 @@ class Object{
 		UPLOAD_ERR_INI_SIZE => "File exceeds UPLOAD_MAX_FILESIZE limit",
 		UPLOAD_ERR_FORM_SIZE => "File exceeds MAX_FILE_SIZE limit",
 		UPLOAD_ERR_PARTIAL => "The file was partially uploaded",
-		UPLOAD_ERR_NO_FILE => "No file was uploaded",
+		UPLOAD_ERR_NO_FILE => "An image file was not uploaded, add one later",
 		UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder",
 		UPLOAD_ERR_CANT_WRITE => "Failed to write to disk",
 		UPLOAD_ERR_EXTENSION => "A PHP extension stopped the file upload"
@@ -108,6 +108,7 @@ class Object{
 			$_SESSION['user_id']= $this->user_id;
 			return true;
 		} else {
+			Session::set_message("<h3 class='bg-danger text-center curves'>There was a problem with the DB INSERT</h3>");
 			return false;
 		}
 	}
