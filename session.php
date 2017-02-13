@@ -74,8 +74,4 @@ class Session{
 }//End of class
 
 $session= new Session();
-
-
-
-
 ?>

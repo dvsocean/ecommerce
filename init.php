@@ -9,6 +9,7 @@ define('INCLUDES_PATH', SITE_ROOT . DS . 'setup');
 require_once "new_config.php";
 require_once "database.php";
 require_once "object.php";
+require_once "product.php";
 require_once "comments_class.php";
 require_once "user.php";
 require_once "photo.php";

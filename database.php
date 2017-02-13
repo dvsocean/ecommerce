@@ -23,7 +23,7 @@ class Database{
 
 	private function confirm_query($result){
 		if (!$result) {
-			die("Query failed DANIKA...! ".$this->conn->error);
+			die("Query failed DANIKA...! " . $this->conn->error . " Error number is.. " . $this->conn->errno);
 		}
 	}
 

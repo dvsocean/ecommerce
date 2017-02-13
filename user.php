@@ -27,7 +27,7 @@ class User extends Object {
   	public $image_placeholder= "../PLACEHOLDER/PLACEHOLDER.JPG";
   	
 
-  	public function delete_user_ajax($data){
+  	public static function delete_users_ajax($data){
   		global $database;
   		foreach ($data as $id) {
   			$sql= "DELETE FROM users WHERE user_id=".$id;
