@@ -121,9 +121,5 @@ class User extends Object {
 		return $first_item;
 	}
 
-
-
-
-
 }//End class
 ?>

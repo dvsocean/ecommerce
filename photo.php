@@ -23,13 +23,12 @@ class Photo extends Object{
 	public function upload_new_profile_image($user_id, $file){
 		global $database;
 		if (empty($file) || !$file || !is_array($file)) {
-			Session::set_message("<h3 class='bg-danger text-center curves'>No image selected or it is not a file</h3>");
-			// $this->user_errors[]= "There was an error with the USER IMAGE file upload DANIKA";
+			Session::set_message("<h3 class='bg-danger text-center curves'>NOT A FILE OR NO IMAGE SELECTED</h3>");
 			return false;
 		}
 
 		if ($file['size'] > 1000000) {
-			Session::set_message("<h3 class='bg-danger text-center curves'>File too big, LIMIT 1MB</h3>");
+			Session::set_message("<h3 class='bg-danger text-center curves'>FILE TOO BIG, LIMIT 1MB</h3>");
 			return false;
 		} else {
 				if ($file['error'] == 0) {
@@ -37,7 +36,7 @@ class Photo extends Object{
 				$temp_name= $file['tmp_name'];
 
 					if (file_exists($target_path)) {
-						Session::set_message("<h3 class='bg-danger text-center curves'>This filename already exists</h3>");
+						Session::set_message("<h3 class='bg-danger text-center curves'>THIS FILE NAME ALREADY EXISTS</h3>");
 						return false;
 					} else{
 						if (move_uploaded_file($temp_name, $target_path)) {

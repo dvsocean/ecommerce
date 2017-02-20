@@ -1,7 +1,6 @@
 <?php
+class Product extends Object {
 
-class Product extends Object
-{
     protected static $db_table= "products";
     protected static $where_clause= "product_id";
     protected static $db_table_fields= array('product_name', 'product_price', 'product_image', 'product_make',
@@ -9,25 +8,22 @@ class Product extends Object
         'product_measurements', 'product_desc', 'product_short_desc', 'product_refund', 'product_tracking');
 
 
-    public $name;
-    public $price;
-    public $image;
-    public $make;
-    public $year;
-    public $color;
-    public $quantity;
-    public $condition;
-    public $location;
-    public $measurements;
-//    public $variations;
-//    public $category;
-    public $description;
-    public $short_desc;
-    public $refund;
-    public $tracking;
-
-    private $temp_path;
-    private $upload_directory= "product_images";
+    public $product_name;
+    public $product_price;
+    public $product_image;
+    public $product_make;
+    public $product_year;
+    public $product_color;
+    public $product_quantity;
+    public $product_condition;
+    public $product_location;
+    public $product_measurements;
+    public $product_desc;
+    public $product_short_desc;
+    public $product_refund;
+    public $product_tracking;
+    public $temp_path;
+    public $upload_directory= "product_images";
 
 
 
@@ -91,6 +87,5 @@ class Product extends Object
             return false;
         }
     }
-
-
 }//End of class
+?>
