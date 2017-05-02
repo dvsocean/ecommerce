@@ -32,10 +32,6 @@ class Database{
 		return $escaped_string;
 	}
 
-	public function last_id(){
-		return $this->conn->insert_id();
-	}
-
 	public function auto_id(){
 		return mysqli_insert_id($this->conn);
 	}
